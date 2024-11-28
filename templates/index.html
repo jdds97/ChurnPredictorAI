@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predictor de Abandono de Clientes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Predictor de Abandono de Clientes</h2>
+        <form id="prediction-form">
+            <h3 class="section-title">Información Personal</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="gender">Género:</label>
+                    <select id="gender" name="gender" required>
+                        <option value="Male">Masculino</option>
+                        <option value="Female">Femenino</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Partner">¿Tiene pareja?</label>
+                    <select id="Partner" name="Partner" required>
+                        <option value="Yes">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Dependents">¿Tiene dependientes?</label>
+                    <select id="Dependents" name="Dependents" required>
+                        <option value="Yes">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tenure">Tiempo como cliente (meses):</label>
+                    <input type="number" id="tenure" name="tenure" required min="0">
+                </div>
+            </div>
+
+            <h3 class="section-title">Servicios Contratados</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="PhoneService">Servicio telefónico:</label>
+                    <select id="PhoneService" name="PhoneService" required>
+                        <option value="Yes">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="MultipleLines">Múltiples líneas:</label>
+                    <select id="MultipleLines" name="MultipleLines" required>
+                        <option value="Yes">Sí</option>
+                        <option value="No">No</option>
+                        <option value="No phone service">Sin servicio telefónico</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="InternetService">Servicio de Internet:</label>
+                    <select id="InternetService" name="InternetService" required>
+                        <option value="DSL">DSL</option>
+                        <option value="Fiber optic">Fibra óptica</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="OnlineSecurity">Seguridad en línea:</label>
+                    <select id="OnlineSecurity" name="OnlineSecurity" required>
+                        <option value="Yes">Sí</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">Sin servicio de Internet</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="OnlineBackup">Backup en línea:</label>
+                    <select id="OnlineBackup" name="OnlineBackup" required>
+                        <option value="Yes">Sí</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">Sin servicio de Internet</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="DeviceProtection">Protección de dispositivos:</label>
+                    <select id="DeviceProtection" name="DeviceProtection" required>
+                        <option value="Yes">Sí</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">Sin servicio de Internet</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="TechSupport">Soporte técnico:</label>
+                    <select id="TechSupport" name="TechSupport" required>
+                        <option value="Yes">Sí</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">Sin servicio de Internet</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="StreamingTV">TV por streaming:</label>
+                    <select id="StreamingTV" name="StreamingTV" required>
+                        <option value="Yes">Sí</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">Sin servicio de Internet</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="StreamingMovies">Películas por streaming:</label>
+                    <select id="StreamingMovies" name="StreamingMovies" required>
+                        <option value="Yes">Sí</option>
+                        <option value="No">No</option>
+                        <option value="No internet service">Sin servicio de Internet</option>
+                    </select>
+                </div>
+            </div>
+
+            <h3 class="section-title">Información de Contrato y Pagos</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="Contract">Tipo de contrato:</label>
+                    <select id="Contract" name="Contract" required>
+                        <option value="Month-to-month">Mes a mes</option>
+                        <option value="One year">Un año</option>
+                        <option value="Two year">Dos años</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="PaperlessBilling">Facturación electrónica:</label>
+                    <select id="PaperlessBilling" name="PaperlessBilling" required>
+                        <option value="Yes">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="PaymentMethod">Método de pago:</label>
+                    <select id="PaymentMethod" name="PaymentMethod" required>
+                        <option value="Electronic check">Cheque electrónico</option>
+                        <option value="Mailed check">Cheque por correo</option>
+                        <option value="Bank transfer (automatic)">Transferencia bancaria (automática)</option>
+                        <option value="Credit card (automatic)">Tarjeta de crédito (automática)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="MonthlyCharges">Cargo mensual ($):</label>
+                    <input type="number" id="MonthlyCharges" name="MonthlyCharges" required min="0" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="TotalCharges">Cargo total ($):</label>
+                    <input type="number" id="TotalCharges" name="TotalCharges" required min="0" step="0.01">
+                </div>
+            </div>
+
+            <button type="submit">Predecir Probabilidad de Abandono</button>
+        </form>
+        <div class="loading" id="loading">Procesando predicción...</div>
+        <div id="result"></div>
+    </div>
+    <script>
+        document.getElementById('prediction-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Visualización de la carga
+            const loadingElement = document.getElementById('loading');
+            const resultElement = document.getElementById('result');
+            loadingElement.style.display = 'block';
+            resultElement.style.display = 'none';
+
+            // Obtener los datos del formulario
+            const formData = new FormData(e.target);
+            
+            // Convertir los datos a URLSearchParams
+            const data = new URLSearchParams(formData);
+
+            // Realizar la solicitud POST y manejar la respuesta cambiando visualmente el resultado
+
+            fetch('/predict', {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => Promise.reject(err));
+                }
+                return response.json();
+            })
+            .then(response => {
+                loadingElement.style.display = 'none';
+                resultElement.innerHTML = `
+                    <strong>${response.prediction}</strong><br>
+                    Probabilidad de abandono: ${response.probability}
+                `;
+                
+                resultElement.style.display = 'block';
+                resultElement.style.backgroundColor = response.prediction.includes('Alto') ? '#ffe6e6' : '#e6ffe6';
+                resultElement.style.color = response.prediction.includes('Alto') ? '#cc0000' : '#006600';
+                resultElement.style.border = '1px solid ' + (response.prediction.includes('Alto') ? '#ffcccc' : '#ccffcc');
+            })
+            .catch(error => {
+                loadingElement.style.display = 'none';
+                resultElement.innerHTML = 'Error en la predicción: ' + (error.error || 'Error desconocido');
+                resultElement.style.display = 'block';
+                resultElement.style.backgroundColor = '#f2dede';
+                resultElement.style.color = '#a94442';
+                resultElement.style.border = '1px solid #ebccd1';
+            });
+        });
+    </script>
+</body>
+</html>
